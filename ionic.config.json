@@ -1,0 +1,7 @@
+{
+  "name": "CuErre",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
