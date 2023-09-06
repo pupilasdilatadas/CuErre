@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
+  token = 'hola123asupont123'
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  registrar(){
+    localStorage.setItem('token',this.token)
   }
 
 }
