@@ -8,7 +8,7 @@
   <ion-input type = "text" placeholder = "Usuario" [(ngModel)]="username"></ion-input>
   <ion-input type = "password" placeholder = "Contraseña" [(ngModel)]="password"></ion-input>
 
-  <ion-button expand = "block" fill = "outline" color = "danger" (click)="registrar()">
+  <ion-button expand = "block" fill = "outline" color = "danger" (click)="registrar()" routerLink="/login">
     Registrar Usuario
   </ion-button>
 
