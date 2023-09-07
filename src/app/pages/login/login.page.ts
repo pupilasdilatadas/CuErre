@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular'; // Importa AlertController desde Ionic
 
 @Component({
   selector: 'app-login',
@@ -18,8 +19,8 @@ export class LoginPage implements OnInit {
   constructor(
 
 
-    private router: Router //para navegar entre pages
-
+    private router: Router, //para navegar entre pages
+    private alertController: AlertController
     
   ) { 
     const usuariosStorage = localStorage.getItem('users');
@@ -32,6 +33,17 @@ export class LoginPage implements OnInit {
     console.log("users", this.listaUsuarios)
   }
 
+  async mostrarMensajeError() { //await solo se permite en funciones async
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'If you got questions or you need advice, then talk to God Cause Hes the only one that listens even when you think He isnt',
+      buttons: ['Aceptar']
+    });
+  
+    await alert.present();
+  }
+
+
   login() {
 
     const nombreUsuarioIngresado = this.nombreUsuario;
@@ -41,6 +53,8 @@ export class LoginPage implements OnInit {
       (user) => user.username === nombreUsuarioIngresado && user.password === contrasenaIngresada
     );
 
+
+    
     if (usuarioEncontrado) {
       console.log('Inicio de sesión exitoso');
       this.router.navigate(["/inicio"]);
@@ -48,12 +62,13 @@ export class LoginPage implements OnInit {
       localStorage.setItem('BIENVENIDO', JSON.stringify(this.listaBienvenidos));
     } else{
       console.log('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      this.mostrarMensajeError();
     }
     
   }
 
 
-
+ 
 
 
 
