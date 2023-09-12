@@ -33,5 +33,8 @@ export class InicioPage implements OnInit {
     localStorage.removeItem('BIENVENIDO');
   }
 
-
+  nombre(){
+    localStorage.removeItem('BIENVENIDO');
+    console.log("Hola!")
+  }
 }

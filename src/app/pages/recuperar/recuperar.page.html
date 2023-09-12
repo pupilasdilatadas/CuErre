@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recuperar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-input type = "text" placeholder = "Usuario" [(ngModel)]="username"></ion-input>
+
+  <ion-button expand = "block" fill = "outline" color = "danger" (click)="registrar()">
+    Recuperar
+  </ion-button>
+  <ion-button expand = "block" fill = "outline" color = "danger" routerLink="/login">
+    Volver al Login
+  </ion-button>
+
+</ion-content>

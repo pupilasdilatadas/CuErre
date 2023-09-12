@@ -34,30 +34,54 @@ export class RegisterPage implements OnInit {
       message: 'If you got questions or you need advice, then talk to God Cause Hes the only one that listens even when you think He isnt',
       buttons: ['Aceptar']
     });
+
+    
   
     await alert.present();
   }
 
-    registrar() {
-      if (this.username && this.password) {
+  async mostrarMensajeUsuario() { //await solo se permite en funciones async
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'El nombre de usuario ya existe. Por favor, elige otro!',
+      buttons: ['Aceptar']
+    });
+
+    
+  
+    await alert.present();
+  }
+
+  registrar() {
+    if (this.username && this.password) {
+      const usuarioExistente = this.usuariosLista.some(
+        (user) => user.username === this.username
+      );
+  
+      if (usuarioExistente) {
+        console.log('El nombre de usuario ya existe. Por favor, elige otro!');
+        this.mostrarMensajeUsuario();
+      } else {
 
         const userData = {
           username: this.username,
           password: this.password,
         };
-
+  
         this.usuariosLista.push(userData);
         localStorage.setItem('users', JSON.stringify(this.usuariosLista));
-
-        console.log('Usuarios antes de agregar:', this.usuariosLista);
-
+  
+        console.log('Usuarios después de agregar:', this.usuariosLista);
+  
         this.username = '';
         this.password = '';
         location.reload();
-      } else{
-        console.log('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-        this.mostrarMensajeError();
       }
+    } else {
+      console.log('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+      this.mostrarMensajeError();
     }
+  }
+  
 
 }
