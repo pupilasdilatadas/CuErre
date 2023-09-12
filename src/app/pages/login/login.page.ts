@@ -57,9 +57,10 @@ export class LoginPage implements OnInit {
     
     if (usuarioEncontrado) {
       console.log('Inicio de sesión exitoso');
-      this.router.navigate(["/inicio"]);
       this.listaBienvenidos.push(nombreUsuarioIngresado);
       localStorage.setItem('BIENVENIDO', JSON.stringify(this.listaBienvenidos));
+      this.listaBienvenidos=[];
+      this.router.navigate(["/inicio"]);
     } else{
       console.log('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
       this.mostrarMensajeError();

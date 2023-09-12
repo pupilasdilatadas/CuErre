@@ -10,6 +10,8 @@ import { AlertController } from '@ionic/angular'; // Importa AlertController des
 })
 export class RegisterPage implements OnInit {
 
+  nombreAlumno: string = '';
+  rutAlumno: string = '';
   username: string = '';
   password: string = '';
   usuariosLista: any[] = [];
@@ -64,6 +66,8 @@ export class RegisterPage implements OnInit {
       } else {
 
         const userData = {
+          nombre: this.nombreAlumno,
+          rut: this.rutAlumno,
           username: this.username,
           password: this.password,
         };
@@ -72,7 +76,9 @@ export class RegisterPage implements OnInit {
         localStorage.setItem('users', JSON.stringify(this.usuariosLista));
   
         console.log('Usuarios después de agregar:', this.usuariosLista);
-  
+
+        this.nombreAlumno = '';
+        this.rutAlumno = '';
         this.username = '';
         this.password = '';
         location.reload();
