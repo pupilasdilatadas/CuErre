@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-input type = "text" placeholder = "Usuario" [(ngModel)]="username"></ion-input>
-
-  <ion-button expand = "block" fill = "outline" color = "danger" (click)="registrar()">
+  <ion-input label="Usuario" type = "text" placeholder = "Ingrese nombre de usuario" [(ngModel)]="username"></ion-input>
+  <ion-input label="Rut" type = "text" placeholder = "Ingrese Rut de Alumno" [(ngModel)]="rut"></ion-input>
+  <ion-button expand = "block" fill = "outline" color = "danger" (click)="recuperar()">
     Recuperar
   </ion-button>
   <ion-button expand = "block" fill = "outline" color = "danger" routerLink="/login">

@@ -10,9 +10,10 @@ import { AlertController } from '@ionic/angular'; // Importa AlertController des
 export class RecuperarPage implements OnInit {
 
   username: string = '';
+  rut: string = '';
   usuariosLista: any[] = [];
 
-  constructor(  
+  constructor(
     private router: Router, //para navegar entre pages
     private alertController: AlertController) {
     const usuariosStorage = localStorage.getItem('users');
@@ -26,11 +27,11 @@ export class RecuperarPage implements OnInit {
 
   async mostrarMensajeUsuario(contrasena: string, usuario: string) {
     const alert = await this.alertController.create({
-      header: 'Error',
+      header: 'Usuario Encontrado',
       message: `El nombre de usuario es: ${usuario} y la contraseña es: ${contrasena}`,
       buttons: ['Aceptar']
     });
-  
+
     await alert.present();
   }
 
@@ -40,10 +41,34 @@ export class RecuperarPage implements OnInit {
       message: `El usuario ${usuario} no existe!`,
       buttons: ['Aceptar']
     });
-  
     await alert.present();
   }
 
+  async mostrarMensajeNoRut() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'El Rut ingresado es erroneo',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+  }
+
+  recuperar(){
+    if (this.username){
+      const usuarioExistente = this.usuariosLista.find(
+        (user) => user.username === this.username
+      );
+      if (usuarioExistente){
+        if (usuarioExistente.rut == this.rut){
+          this.mostrarMensajeUsuario(usuarioExistente.password, usuarioExistente.username);
+        }else{
+          this.mostrarMensajeNoRut();
+        }
+      }else{
+        this.mostrarMensajeNo(this.username);
+      }
+    }
+  }
 
   registrar() {
     if (this.username) {
@@ -59,5 +84,5 @@ export class RecuperarPage implements OnInit {
 
     }
   }
-  
+
 }

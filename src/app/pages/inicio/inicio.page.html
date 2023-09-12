@@ -4,7 +4,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-button expand = "block" fill = "outline" color = "danger" (click)="nombre()" routerLink="/login" >
-  Cerrar Sesión
-</ion-button>
+<ion-content>
+  <zxing-scanner (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+  <ion-button expand = "block" fill = "outline" color = "danger" (click)="nombre()" routerLink="/login" >
+    Cerrar Sesión
+  </ion-button>
+</ion-content>
+
+
 
