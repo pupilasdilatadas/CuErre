@@ -39,24 +39,21 @@ export class RegisterPage implements OnInit {
   }
 
     registrar() {
-      // Validar que se hayan ingresado datos en los campos
       if (this.username && this.password) {
-        // Crear un objeto con los datos ingresados
+
         const userData = {
           username: this.username,
           password: this.password,
         };
 
-        // Agregar el objeto a la lista
         this.usuariosLista.push(userData);
-
-        // Guardar la lista en el localStorage
         localStorage.setItem('users', JSON.stringify(this.usuariosLista));
 
-        // Limpiar los campos de entrada
+        console.log('Usuarios antes de agregar:', this.usuariosLista);
+
         this.username = '';
         this.password = '';
-        this.router.navigate(["/login"])
+        location.reload();
       } else{
         console.log('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
         this.mostrarMensajeError();
