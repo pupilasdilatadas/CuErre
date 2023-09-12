@@ -22,12 +22,18 @@ export class RegisterPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    
+
     const storedUsers = localStorage.getItem('users');
     if (storedUsers) {
       this.usuariosLista = JSON.parse(storedUsers);
     }
+  }
 
+  ngOnDestroy(){
+    this.nombreAlumno = '';
+    this.rutAlumno = '';
+    this.username = '';
+    this.password = '';
   }
 
   async mostrarMensajeError() { //await solo se permite en funciones async
@@ -36,10 +42,11 @@ export class RegisterPage implements OnInit {
       message: 'If you got questions or you need advice, then talk to God Cause Hes the only one that listens even when you think He isnt',
       buttons: ['Aceptar']
     });
-
-    
-  
     await alert.present();
+  }
+
+  backLogin(){
+    this.router.navigate(['/login']);
   }
 
   async mostrarMensajeUsuario() { //await solo se permite en funciones async
@@ -49,8 +56,8 @@ export class RegisterPage implements OnInit {
       buttons: ['Aceptar']
     });
 
-    
-  
+
+
     await alert.present();
   }
 
@@ -59,7 +66,7 @@ export class RegisterPage implements OnInit {
       const usuarioExistente = this.usuariosLista.some(
         (user) => user.username === this.username
       );
-  
+
       if (usuarioExistente) {
         console.log('El nombre de usuario ya existe. Por favor, elige otro!');
         this.mostrarMensajeUsuario();
@@ -71,10 +78,10 @@ export class RegisterPage implements OnInit {
           username: this.username,
           password: this.password,
         };
-  
+
         this.usuariosLista.push(userData);
         localStorage.setItem('users', JSON.stringify(this.usuariosLista));
-  
+
         console.log('Usuarios después de agregar:', this.usuariosLista);
 
         this.nombreAlumno = '';
@@ -88,6 +95,6 @@ export class RegisterPage implements OnInit {
       this.mostrarMensajeError();
     }
   }
-  
+
 
 }

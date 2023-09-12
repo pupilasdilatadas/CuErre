@@ -21,12 +21,14 @@ export class LoginPage implements OnInit {
 
     private router: Router, //para navegar entre pages
     private alertController: AlertController
-    
-  ) { 
+
+  ) {
     const usuariosStorage = localStorage.getItem('users');
     if (usuariosStorage) {
       this.listaUsuarios = JSON.parse(usuariosStorage);
     }
+    this.nombreUsuario = '';
+    this.contrasena = '';
   }
 
   ngOnInit() {
@@ -39,7 +41,7 @@ export class LoginPage implements OnInit {
       message: 'If you got questions or you need advice, then talk to God Cause Hes the only one that listens even when you think He isnt',
       buttons: ['Aceptar']
     });
-  
+
     await alert.present();
   }
 
@@ -54,7 +56,7 @@ export class LoginPage implements OnInit {
     );
 
 
-    
+
     if (usuarioEncontrado) {
       console.log('Inicio de sesión exitoso');
       this.listaBienvenidos.push(nombreUsuarioIngresado);
@@ -65,11 +67,11 @@ export class LoginPage implements OnInit {
       console.log('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
       this.mostrarMensajeError();
     }
-    
+
   }
 
 
- 
+
 
 
 

@@ -25,6 +25,11 @@ export class RecuperarPage implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy(){
+    this.username = '';
+    this.rut = '';
+  }
+
   async mostrarMensajeUsuario(contrasena: string, usuario: string) {
     const alert = await this.alertController.create({
       header: 'Usuario Encontrado',
